@@ -90,7 +90,7 @@ get '/details/:post_id' do
 end	
 
 # обработчик post-запроса /details/...
-# (браузер отправляет данные на сервер, мф их принимаем)
+# (браузер отправляет данные на сервер, мы их принимаем)
 
 post '/details/:post_id' do
 
@@ -99,6 +99,12 @@ post '/details/:post_id' do
 
 	# получаем переменную из post-запроса
   content = params[:content]
+
+	# проверяем заполненность комментария
+	if content.length <= 0
+		@error = 'Type comment text'
+		redirect to ('/details/' + post_id)	
+	end	
 
 	# сохранение данных в БД
 	@db.execute 'insert into Comments 
