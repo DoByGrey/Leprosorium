@@ -1,5 +1,12 @@
 <h2>Add New Post</h2>
 <p>
+  <form class="form-inline">
+    <div class="form-group">
+      <label for="InputName">Author</label>
+      <input type="text" class="form-control" id="InputName" placeholder="Type your name">
+    </div>
+  </form>
+  <br />
   <form action="/new" method="POST" role="form">
     <textarea name="content" class="form-control" rows="6" placeholder="Type post text here..."></textarea>
     <br />
