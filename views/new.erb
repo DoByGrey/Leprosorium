@@ -1,13 +1,11 @@
 <h2>Add New Post</h2>
 <p>
-  <form class="form-inline">
-    <div class="form-group">
-      <label for="InputName">Author</label>
-      <input type="text" class="form-control" id="InputName" placeholder="Type your name">
-    </div>
-  </form>
-  <br />
   <form action="/new" method="POST" role="form">
+    <div class="form-inline">
+      <label for="author">Author</label>
+      <input name="author" type="text" class="form-control" placeholder="Type your name">
+    </div>
+    <br />
     <textarea name="content" class="form-control" rows="6" placeholder="Type post text here..."></textarea>
     <br />
     <button type="submit" class="btn btn-primary">Submit</button>

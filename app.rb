@@ -24,6 +24,7 @@ configure do
 		(
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			created_date DATE,
+			author TEXT,
 			content TEXT
 		)'
 
@@ -55,7 +56,13 @@ end
 # (браузер отправляет данные на сервер)
 post '/new' do
 	# получаем переменную из post-запроса
+	author = params[:author]
   content = params[:content]
+
+	if author.length <= 0
+		@error = 'Type name author'
+		return erb :new
+	end	
 
 	if content.length <= 0
 		@error = 'Type post text'
@@ -63,7 +70,7 @@ post '/new' do
 	end	
 
 	# сохранение данных в БД
-	@db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
+	@db.execute 'insert into Posts (author, content, created_date) values (?, ?, datetime())', [author, content]
 
 	# перенаправление на главную страницу
 	redirect to '/'
